@@ -1,44 +1,18 @@
-import React, {useState} from "react";
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {Rating} from "./Rating";
 
 
-export function Rating() {
+export default {
+    title: 'Rating stories',
+    component:  Rating,
+    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+} as ComponentMeta<typeof Rating>;
 
-    const [star, setStar] = useState(0)
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+// const EmptyStars: ComponentStory<typeof Rating> = (args) => <Rating {...args} />;
 
-    const onClickHandler = (props: number) => () => setStar(props)
-
-
-    return (
-        <div>
-            <span onClick={onClickHandler(1)}>
-                <Star selected={star > 0}/>
-            </span>
-            <span onClick={onClickHandler(2)}>
-                <Star selected={star > 1}/>
-            </span>
-            <span onClick={onClickHandler(3)}>
-                <Star selected={star > 2}/>
-            </span>
-            <span onClick={onClickHandler(4)}>
-                <Star selected={star > 3}/>
-            </span>
-            <span onClick={onClickHandler(5)}>
-                <Star selected={star > 4}/>
-            </span>
-        </div>
-    )
-
-}
-
-type StarPropsType = {
-    selected: boolean;
-}
-
-
-function Star(props: StarPropsType) {
-    return (
-        props.selected
-            ? (<span><b> star </b></span>)
-            : (<span> star </span>)
-    )
-}
+export const EmptyStars = () => <Rating />
